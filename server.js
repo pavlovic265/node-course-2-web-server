@@ -2,6 +2,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//Heroku ce postaviti process.env.PORT 
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -71,6 +74,9 @@ app.get('/bad', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000');
+//Heroku zahteva promenu porta da bude dinamicki
+//Koristicemo enviroment varijablu koju ce heroku da postavi
+//Varijablu koju ce Heroku da koristi je PORT
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 });
